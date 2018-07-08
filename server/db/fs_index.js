@@ -15,9 +15,19 @@ module.exports = {
                 }
             })
         })
-    }
-    ,
-    readAll : ()=>{
+    },
+    readAll : (cb)=>{
+        fs.readdir(exports.dataDir,(err,files)=>{
+            let allPromise = files.map((file)=>{
+                let id = file.substring(0,5)
+                return new Promise((resolve,reject)=>{
+                    fs.readFile(path.join(exports.dataDir,`${id}.txt`),'utf-8',(err,text)=>{
+                        resolve({id,text})
+                    })
+                })
+            })
+            Promise.all(allPromise).then((messages)=>cb(null,messages))
+        })
 
     },
     update : ()=>{

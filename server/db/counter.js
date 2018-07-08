@@ -32,7 +32,7 @@ const writeCounter = (counter)=>{
 }
 
 exports.getNextUniqueId = function(cb){
-    readCounter().catch((err)=>writeCounter(0)).then((counter)=>writeCounter(counter+1))
+    readCounter().catch(()=>writeCounter(0)).then((counter)=>writeCounter(counter+1))
         .catch((err)=>cb(err)).then((counterString)=>cb(null,counterString))
 }
 
