@@ -1,5 +1,6 @@
 var fs = require('fs');
-var MyApp = require('../db/fs_index.js')
+// var MyApp = require('../db/fs_index.js')
+var MyApp = require('../models');
 
 var defaultCorsHeaders = {
   'access-control-allow-origin': '*',
@@ -25,7 +26,7 @@ var handleRequest = function (req, res) {
       let headers = Object.assign({}, defaultCorsHeaders, {
         'Content-Type': 'text/plain'
       })
-      MyApp.readAll((err, messages) => {
+      MyApp.todos.readAll((err, messages) => {
         if (err) {
           res.writeHeader(500, headers)
           res.end(err)
@@ -40,7 +41,7 @@ var handleRequest = function (req, res) {
       })
       req.on('data', (chunk) => body += chunk).on('end', () => {
         console.log("BODY",body)
-        MyApp.create(JSON.parse(body).text, (err, postedData) => {
+        MyApp.todos.create(JSON.parse(body).text, (err, postedData) => {
           if (err) {
             res.writeHeader(500, headers)
             res.end(err)
