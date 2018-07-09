@@ -10,15 +10,9 @@ var defaultCorsHeaders = {
 };
 
 
-var handleRequest = function (req, res) {
+module.exports = function (req, res) {
   let {method,url} = req
   let body = ''
-  var resContainer = {
-    defaultCorsHeaders,
-    method,
-    url,
-    results: []
-  }
 
   //ROUTING
   if (url === '/todo') {
@@ -40,7 +34,6 @@ var handleRequest = function (req, res) {
         'Content-Type': 'application/json'
       })
       req.on('data', (chunk) => body += chunk).on('end', () => {
-        console.log("BODY",body)
         MyApp.todos.create(JSON.parse(body).text, (err, postedData) => {
           if (err) {
             res.writeHeader(500, headers)
@@ -63,5 +56,3 @@ var handleRequest = function (req, res) {
     res.end("Resource not found")
   }
 }
-
-module.exports = handleRequest
