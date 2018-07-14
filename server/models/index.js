@@ -2,12 +2,15 @@ var dbConnection = require('../db/index.js')
 
 module.exports={
   fifa:{
-    renderStandings: (cb)=>{
+    renderStandings: ({poolName},cb)=>{
+      console.log("FIFA", poolName)
       var queryStr = `SELECT u.*, sum(b.score) as score
-      FROM players u
-        INNER JOIN userBrackets b ON u.user_ID = b.user_ID
-      GROUP BY u.user_ID`
+      FROM users u
+        INNER JOIN userBrackets b ON u.username = b.username
+      WHERE b.poolName = "${poolName}"
+      GROUP BY u.username`
       dbConnection.query(queryStr,(err,results)=>{
+        console.log(results)
         if(err) cb(err);
         else cb(null,results);
       })
@@ -41,15 +44,18 @@ module.exports={
   },
   userPools:{
     joinPool: ({username,poolName},cb)=>{
-      var queryStr = 'insert into userPools values (?, ?)'
-      var params = [username,poolName]
-      dbConnection.query(queryStr,params,(err,results)=>{
+      var queryStr = `insert into userPools 
+        select * from (select "${username}","${poolName}") as tmp
+        where not exists (select username,poolName from userPools
+        where username= "${username}" AND poolName="${poolName}"
+        ) limit 1;`
+      dbConnection.query(queryStr,(err,results)=>{
         if(err) cb(err)
         else cb(null,results)
       })
     },
     showPool: ({poolName},cb)=>{
-      var queryStr = `select up.userName from userPools up where up.poolName = "${poolName}"`
+      var queryStr = `select up.username from userPools up where up.poolName = "${poolName}"`
       dbConnection.query(queryStr,(err,results)=>{
         if(err) cb(err)
         else cb(null,results)
