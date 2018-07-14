@@ -1,11 +1,12 @@
 const mysql = require('mysql');
-
-var dbConnection = mysql.createConnection({
+const dbURL = process.env.CLEARDB_DATABASE_URL || {
   host: 'localhost',
   user: 'root',
   password: 'password',
   database: 'fifa'
-})
+}
+
+var dbConnection = mysql.createConnection(dbURL)
 
 dbConnection.connect((err)=>{
   if(err){

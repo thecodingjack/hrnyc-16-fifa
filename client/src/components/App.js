@@ -4,7 +4,6 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import getStandings from '../lib/getStandings.js'
 import { Bracket } from './Bracket.js';
 import { Header } from './Header.js';
 
@@ -30,7 +29,7 @@ export default class App extends React.Component{
   }
 
   handleSignUp(username,password,history){
-    fetch("http://127.0.0.1:3000/users",{
+    fetch("https://serieux-saucisson-19708.herokuapp.com/users",{
       method: 'POST',
       body: JSON.stringify({username,password})
     })
@@ -46,7 +45,7 @@ export default class App extends React.Component{
   }
 
   handleAdd(poolName){
-    fetch("http://127.0.0.1:3000/pools",{
+    fetch("https://serieux-saucisson-19708.herokuapp.com/pools",{
       method: 'POST',
       body: JSON.stringify({poolName})
     })
@@ -58,7 +57,7 @@ export default class App extends React.Component{
   }
 
   // handleShowPool(poolName){
-  //   fetch(`http://127.0.0.1:3000/userPools/?poolName=${poolName}`,{
+  //   fetch(`https://serieux-saucisson-19708.herokuapp.com/userPools/?poolName=${poolName}`,{
   //     method: 'GET',
   //   })
   //   .then(response => response.json())
@@ -70,7 +69,7 @@ export default class App extends React.Component{
 
   handleJoinPool(username,poolName){
     this.setState({poolName})
-    fetch("http://127.0.0.1:3000/userPools",{
+    fetch("https://serieux-saucisson-19708.herokuapp.com/userPools",{
       method: 'POST',
       body: JSON.stringify({username,poolName})
     })
@@ -86,7 +85,7 @@ export default class App extends React.Component{
   handleSubmitBracket(bracket){
     let mBody = {"poolName":this.state.poolName,"username":this.state.username,bracket}
     console.log("MBODY",mBody)
-    fetch("http://127.0.0.1:3000/userBrackets",{
+    fetch("https://serieux-saucisson-19708.herokuapp.com/userBrackets",{
       method: 'POST',
       body: JSON.stringify(mBody)
     })
@@ -97,7 +96,7 @@ export default class App extends React.Component{
   }
 
   getPools(cb){
-    fetch("http://127.0.0.1:3000/pools",{
+    fetch("https://serieux-saucisson-19708.herokuapp.com/pools",{
       method: 'GET'
     })
     .then(response => response.json())
@@ -105,7 +104,7 @@ export default class App extends React.Component{
   }
 
   getUserPools(cb){
-    fetch(`http://127.0.0.1:3000/userPoolsList/?username=${this.state.username}`,{
+    fetch(`https://serieux-saucisson-19708.herokuapp.com/userPoolsList/?username=${this.state.username}`,{
       method: 'GET'
     })
     .then(response => response.json())
@@ -114,7 +113,7 @@ export default class App extends React.Component{
 
   getStandings(poolName,cb){
     console.log({poolName})
-    fetch(`http://127.0.0.1:3000/fifa/?poolName=${poolName}`,{
+    fetch(`https://serieux-saucisson-19708.herokuapp.com/fifa/?poolName=${poolName}`,{
       method: 'GET'
     })
     .then(response => response.json())
