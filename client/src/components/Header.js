@@ -7,10 +7,10 @@ import {
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
 
 export const Header = ()=>(
-  <Navbar>
+  <Navbar style={{background:"#800000",borderRadius:0, borderWidth:"0px"}}>
     <Navbar.Header>
       <Navbar.Brand>
-        <Link to="/">Fifa Pool</Link>
+        <Link to="/">FIFA Pool</Link>
       </Navbar.Brand>
     </Navbar.Header>
     <Nav>

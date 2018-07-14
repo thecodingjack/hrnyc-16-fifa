@@ -80,27 +80,27 @@ export default class Pool extends React.Component{
       <ul className="round round-1">
         <li className="spacer">&nbsp;</li>
         
-        <li className="game game-top">Uruguay <input style={{float:'right',maxWidth:'30px',marginRight:'8px'}} id="score1a" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(1,0,e.target.value)}}></input></li>
+        <li className="game game-top">Uruguay <input style={{float:'right',maxWidth:'30px',marginRight:'8px', color:"black"}} id="score1a" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(1,0,e.target.value)}}></input></li>
         <li className="game game-spacer">&nbsp;</li>
-        <li className="game game-bottom winner">France <input style={{float:'right',maxWidth:'30px',marginRight:'8px'}} id="score1b" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(1,1,e.target.value)}}></input></li>
+        <li className="game game-bottom winner">France <input style={{float:'right',maxWidth:'30px',marginRight:'8px', color:"black"}} id="score1b" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(1,1,e.target.value)}}></input></li>
 
         <li className="spacer">&nbsp;</li>
         
-        <li className="game game-top">Brazil <input style={{float:'right',maxWidth:'30px',marginRight:'8px'}} id="score2a" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(2,0,e.target.value)}}></input></li>
+        <li className="game game-top">Brazil <input style={{float:'right',maxWidth:'30px',marginRight:'8px', color:"black"}} id="score2a" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(2,0,e.target.value)}}></input></li>
         <li className="game game-spacer">&nbsp;</li>
-        <li className="game game-bottom winner">Belgium <input style={{float:'right',maxWidth:'30px',marginRight:'8px'}} id="score2b" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(2,1,e.target.value)}}></input></li>
+        <li className="game game-bottom winner">Belgium <input style={{float:'right',maxWidth:'30px',marginRight:'8px', color:"black"}} id="score2b" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(2,1,e.target.value)}}></input></li>
 
         <li className="spacer">&nbsp;</li>
         
-        <li className="game game-top">Russia <input style={{float:'right',maxWidth:'30px',marginRight:'8px'}} id="score3a" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(3,0,e.target.value)}}></input></li>
+        <li className="game game-top">Russia <input style={{float:'right',maxWidth:'30px',marginRight:'8px', color:"black"}} id="score3a" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(3,0,e.target.value)}}></input></li>
         <li className="game game-spacer">&nbsp;</li>
-        <li className="game game-bottom winner">Croatia <input style={{float:'right',maxWidth:'30px',marginRight:'8px'}} id="score3b" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(3,1,e.target.value)}}></input></li>
+        <li className="game game-bottom winner">Croatia <input style={{float:'right',maxWidth:'30px',marginRight:'8px', color:"black"}} id="score3b" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(3,1,e.target.value)}}></input></li>
 
         <li className="spacer">&nbsp;</li>
         
-        <li className="game game-top">Sweden <input style={{float:'right',maxWidth:'30px',marginRight:'8px'}} id="score4a" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(4,0,e.target.value)}}></input></li>
+        <li className="game game-top">Sweden <input style={{float:'right',maxWidth:'30px',marginRight:'8px', color:"black"}} id="score4a" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(4,0,e.target.value)}}></input></li>
         <li className="game game-spacer">&nbsp;</li>
-        <li className="game game-bottom winner">England <input style={{float:'right',maxWidth:'30px',marginRight:'8px'}} id="score4b" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(4,1,e.target.value)}}></input></li>
+        <li className="game game-bottom winner">England <input style={{float:'right',maxWidth:'30px',marginRight:'8px', color:"black"}} id="score4b" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(4,1,e.target.value)}}></input></li>
 
         <li className="spacer">&nbsp;</li>
       </ul>
@@ -108,38 +108,38 @@ export default class Pool extends React.Component{
         <li className="spacer">&nbsp;</li>
         
         <li className="game game-top winner">
-          <select id="winner1" onChange={(e)=>this.handleWinnerInput(1,e.target.value,5,0)}>
+          <select style={{color:"black"}} id="winner1" onChange={(e)=>this.handleWinnerInput(1,e.target.value,5,0)}>
             <option selected value="0" disabled>Winner</option>
             <option value="1">Uruguay</option>
             <option value="2">France</option>
           </select>
-          <input style={{float:'right',maxWidth:'30px',marginRight:'8px'}} id="score5a" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(5,0,e.target.value)}}></input></li>
+          <input style={{float:'right',maxWidth:'30px',marginRight:'8px', color:"black"}} id="score5a" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(5,0,e.target.value)}}></input></li>
         <li className="game game-spacer">&nbsp;</li>
         <li className="game game-bottom ">
-          <select id="winner2" onChange={(e)=>this.handleWinnerInput(2,e.target.value,5,1)}>
+          <select style={{color:"black"}} id="winner2" onChange={(e)=>this.handleWinnerInput(2,e.target.value,5,1)}>
             <option selected value="0" disabled>Winner</option>
             <option value="3">Brazil</option>
             <option value="4">Belgium</option>
           </select>
-          <input style={{float:'right',maxWidth:'30px',marginRight:'8px'}} id="score5b" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(5,1,e.target.value)}}></input></li>
+          <input style={{float:'right',maxWidth:'30px',marginRight:'8px', color:"black"}} id="score5b" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(5,1,e.target.value)}}></input></li>
 
         <li className="spacer">&nbsp;</li>
         
         <li className="game game-top winner">
-          <select id="winner3" onChange={(e)=>this.handleWinnerInput(3,e.target.value,6,0)}>
+          <select style={{color:"black"}} id="winner3" onChange={(e)=>this.handleWinnerInput(3,e.target.value,6,0)}>
             <option selected value="0" disabled>Winner</option>
             <option value="5">Russia</option>
             <option value="6">Croatia</option>
           </select>
-          <input style={{float:'right',maxWidth:'30px',marginRight:'8px'}} id="score6a" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(6,0,e.target.value)}}></input></li>
+          <input style={{float:'right',maxWidth:'30px',marginRight:'8px', color:"black" }} id="score6a" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(6,0,e.target.value)}}></input></li>
         <li className="game game-spacer">&nbsp;</li>
         <li className="game game-bottom ">
-          <select id="winner4" onChange={(e)=>this.handleWinnerInput(4,e.target.value,6,1)}>
+          <select style={{color:"black"}} id="winner4" onChange={(e)=>this.handleWinnerInput(4,e.target.value,6,1)}>
             <option selected value="0" disabled>Winner</option>
             <option value="7">Sweden</option>
             <option value="8">England</option>
           </select>
-          <input style={{float:'right',maxWidth:'30px',marginRight:'8px'}} id="score6b" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(6,1,e.target.value)}}></input></li>
+          <input style={{float:'right',maxWidth:'30px',marginRight:'8px', color:"black"}} id="score6b" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(6,1,e.target.value)}}></input></li>
 
         <li className="spacer">&nbsp;</li>
         
@@ -148,24 +148,24 @@ export default class Pool extends React.Component{
         <li className="spacer">&nbsp;</li>
         
         <li className="game game-top">
-        <select id="winner5" onChange={(e)=>this.handleWinnerInput(5,e.target.value,7,0)}>
+        <select style={{color:"black"}} id="winner5" onChange={(e)=>this.handleWinnerInput(5,e.target.value,7,0)}>
             <option selected value="0" disabled>Winner</option>
             <option value="1">Uruguay</option>
             <option value="2">France</option>
             <option value="3">Brazil</option>
             <option value="4">Belgium</option>
           </select>
-          <input style={{float:'right',maxWidth:'30px',marginRight:'8px'}} id="score7a" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(7,0,e.target.value)}}></input></li>
+          <input style={{float:'right',maxWidth:'30px',marginRight:'8px', color:"black"}} id="score7a" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(7,0,e.target.value)}}></input></li>
         <li className="game game-spacer">&nbsp;</li>
         <li className="game game-bottom ">
-          <select id="winner6" onChange={(e)=>this.handleWinnerInput(6,e.target.value,7,1)}>
+          <select style={{color:"black"}} id="winner6" onChange={(e)=>this.handleWinnerInput(6,e.target.value,7,1)}>
             <option selected value="0" disabled>Winner</option> 
             <option value="5">Russia</option>
             <option value="6">Croatia</option>
             <option value="7">Sweden</option>
             <option value="8">England</option>
           </select>
-          <input style={{float:'right',maxWidth:'30px',marginRight:'8px'}} id="score7b" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(7,1,e.target.value)}}></input></li>
+          <input style={{float:'right',maxWidth:'30px',marginRight:'8px', color:"black"}} id="score7b" type="text" placeholder="0" onChange={(e) => {this.handleScoreInput(7,1,e.target.value)}}></input></li>
 
         <li className="spacer">&nbsp;</li>
 
@@ -174,7 +174,7 @@ export default class Pool extends React.Component{
         <li className="spacer">&nbsp;</li>
         
         <li className="game game-top winner">
-          <select id="winner7" onChange={(e)=>this.handleWinnerInput(7,e.target.value)}>
+          <select style={{color:"black"}} id="winner7" onChange={(e)=>this.handleWinnerInput(7,e.target.value)}>
             <option selected value="0" disabled>Winner</option>
             <option value="1">Uruguay</option>
             <option value="2">France</option>
@@ -185,7 +185,7 @@ export default class Pool extends React.Component{
             <option value="7">Sweden</option>
             <option value="8">England</option>
           </select>
-          <button style={{float:'right',marginRight:"16px"}} onClick={()=>{
+          <button style={{float:'right',marginRight:"16px", color:"black"}} onClick={()=>{
             this.props.handleSubmitBracket(this.state)
           }}>Done!</button>
         </li>

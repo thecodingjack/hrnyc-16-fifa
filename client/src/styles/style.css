@@ -1,6 +1,23 @@
 /*
  *  Flex Layout Specifics
 */
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900);
+
+body {
+  background: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
+    url(http://yourtubetheme.com/wp-content/uploads/2014/09/Fifa-15-YouTube-Channel-Art-980x551.jpg);
+  background-size: cover;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: white;
+}
+
+.black{
+  color:"black"
+}
 main{
   display:flex;
   flex-direction:row;
@@ -9,7 +26,7 @@ main{
   display:flex;
   flex-direction:column;
   justify-content:center;
-  width:200px;
+  width:250px;
   list-style:none;
   padding:0;
 }
@@ -30,7 +47,7 @@ li.game{
 }
 
   li.game.winner{
-    font-weight:bold;
+    /* font-weight:bold; */
   }
   li.game span{
     float:right;
@@ -41,7 +58,7 @@ li.game{
 
   li.game-spacer{ 
     border-right:1px solid #aaa;
-    min-height:40px;
+    min-height:50px;
   }
 
   li.game-bottom{ 
