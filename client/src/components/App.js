@@ -137,7 +137,7 @@ export default class App extends React.Component{
       <Router>
         <div>
           <Header/>
-          <div>Hi, {this.state.username} </div>
+          <div className="col-md-12">Hi, {this.state.username} </div>
           <Route path="/" exact render={()=>(
             <div>
             <Bracket/>
