@@ -59,6 +59,7 @@ module.exports ={
   },
   userPoolsList:{
     get: function(req,res){
+      console.log("TESTING")
       MyApp.userPools.userPoolList((req.query),(err,results)=>{
         if (err) res.send(err)
         else res.send(results)
@@ -81,6 +82,7 @@ module.exports ={
     post: function(req,res){
       let body=''
       req.on('data',(chunk)=>body+=chunk).on('end',()=>{
+        console.log({body})
         MyApp.users.loginUser(JSON.parse(body),(err,results)=>{
           if (err) res.send(err)
           else res.send(results)

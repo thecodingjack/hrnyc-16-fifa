@@ -21,6 +21,7 @@ export default class App extends React.Component{
       username: 'anonymous'
     }
     this.handleSignUp = this.handleSignUp.bind(this)
+    this.handleLogin = this.handleLogin.bind(this)
     this.handleAdd = this.handleAdd.bind(this)
     this.handleJoinPool = this.handleJoinPool.bind(this)
     this.handleSubmitBracket = this.handleSubmitBracket.bind(this)
@@ -29,7 +30,7 @@ export default class App extends React.Component{
   }
 
   handleSignUp(username,password,history){
-    fetch("https://serieux-saucisson-19708.herokuapp.com/users",{
+    fetch("/users",{
       method: 'POST',
       body: JSON.stringify({username,password})
     })
@@ -45,15 +46,16 @@ export default class App extends React.Component{
   }
 
   handleLogin(username,password,history){
-    fetch("https://serieux-saucisson-19708.herokuapp.com/login",{
+    fetch("/login",{
       method: 'POST',
       body: JSON.stringify({username,password})
     })
     .then(response => response.json())
     .then(data => {
-      if(data.errno) {
+      if(!data.length) {
         alert("invalid Email/Password")
       }else{
+        console.log({data})
         this.setState({username})
         history.goBack()
       }
@@ -61,7 +63,7 @@ export default class App extends React.Component{
   }
 
   handleAdd(poolName){
-    fetch("https://serieux-saucisson-19708.herokuapp.com/pools",{
+    fetch("/pools",{
       method: 'POST',
       body: JSON.stringify({poolName})
     })
@@ -74,7 +76,7 @@ export default class App extends React.Component{
 
   handleJoinPool(username,poolName){
     this.setState({poolName})
-    fetch("https://serieux-saucisson-19708.herokuapp.com/userPools",{
+    fetch("/userPools",{
       method: 'POST',
       body: JSON.stringify({username,poolName})
     })
@@ -90,7 +92,7 @@ export default class App extends React.Component{
   handleSubmitBracket(bracket){
     let mBody = {"poolName":this.state.poolName,"username":this.state.username,bracket}
     console.log("MBODY",mBody)
-    fetch("https://serieux-saucisson-19708.herokuapp.com/userBrackets",{
+    fetch("/userBrackets",{
       method: 'POST',
       body: JSON.stringify(mBody)
     })
@@ -101,7 +103,7 @@ export default class App extends React.Component{
   }
 
   getPools(cb){
-    fetch("https://serieux-saucisson-19708.herokuapp.com/pools",{
+    fetch("/pools",{
       method: 'GET'
     })
     .then(response => response.json())
@@ -109,7 +111,7 @@ export default class App extends React.Component{
   }
 
   getUserPools(cb){
-    fetch(`https://serieux-saucisson-19708.herokuapp.com/userPoolsList/?username=${this.state.username}`,{
+    fetch(`/userPoolsList/?username=${this.state.username}`,{
       method: 'GET'
     })
     .then(response => response.json())
@@ -118,7 +120,7 @@ export default class App extends React.Component{
 
   getStandings(poolName,cb){
     console.log({poolName})
-    fetch(`https://serieux-saucisson-19708.herokuapp.com/fifa/?poolName=${poolName}`,{
+    fetch(`/fifa/?poolName=${poolName}`,{
       method: 'GET'
     })
     .then(response => response.json())
@@ -152,8 +154,8 @@ export default class App extends React.Component{
           <Route path="/pool" render={()=>(
             <Pool standings={this.state.standings} username={this.state.username} poolName={this.state.poolName} handleSubmitBracket={this.handleSubmitBracket}/>
           )}/>
-          <Route path="/login" render={()=>(
-            <Login/>
+          <Route path="/login" render={({history})=>(
+            <Login mHistory={history} onLogin={this.handleLogin}/>
           )}/>
           <Route path="/signUp" render={({history})=>(
             <SignUp mHistory={history} onSignUp={this.handleSignUp}/>

@@ -40,9 +40,11 @@ module.exports={
       })
     },
     loginUser: (user,cb)=>{
-      var queryStr = `select * from users where users.username="${user.username}" AND users.password="{user.password}"`
+      var queryStr = `select * from users where users.username="${user.username}" AND users.password="${user.password}"`
       var params = [user.username,user.password]
       dbConnection.query(queryStr,params,(err,results)=>{
+        console.log("LOGIN ",results)
+        console.log("ERR ",err)
         if(err) cb(err)
         else cb(null,results)
       })
