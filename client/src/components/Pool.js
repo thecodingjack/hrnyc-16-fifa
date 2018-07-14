@@ -23,7 +23,6 @@ export default class Pool extends React.Component{
     })
     .then(response => response.json())
     .then(({isPlaying}) => {
-      console.log(isPlaying)
       this.setState({isPlaying})
     })
   }
@@ -187,6 +186,7 @@ export default class Pool extends React.Component{
           </select>
           <button style={{float:'right',marginRight:"16px", color:"black"}} onClick={()=>{
             this.props.handleSubmitBracket(this.state)
+            this.setState({"isPlaying":1})
           }}>Done!</button>
         </li>
 
