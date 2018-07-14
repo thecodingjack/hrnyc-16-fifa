@@ -44,6 +44,22 @@ export default class App extends React.Component{
     })
   }
 
+  handleLogin(username,password,history){
+    fetch("https://serieux-saucisson-19708.herokuapp.com/login",{
+      method: 'POST',
+      body: JSON.stringify({username,password})
+    })
+    .then(response => response.json())
+    .then(data => {
+      if(data.errno) {
+        alert("invalid Email/Password")
+      }else{
+        this.setState({username})
+        history.goBack()
+      }
+    })
+  }
+
   handleAdd(poolName){
     fetch("https://serieux-saucisson-19708.herokuapp.com/pools",{
       method: 'POST',
@@ -55,17 +71,6 @@ export default class App extends React.Component{
       alert("Pool added!")
     })
   }
-
-  // handleShowPool(poolName){
-  //   fetch(`https://serieux-saucisson-19708.herokuapp.com/userPools/?poolName=${poolName}`,{
-  //     method: 'GET',
-  //   })
-  //   .then(response => response.json())
-  //   .then(players => {
-  //     this.setState({players,poolName})
-  //   })
-  // }
-
 
   handleJoinPool(username,poolName){
     this.setState({poolName})

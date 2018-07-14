@@ -31,6 +31,7 @@ app.post('/userPools',controller.userPools.post)
 app.get('/userPools',controller.userPools.get)
 app.get('/userPoolsList',controller.userPoolsList.get)
 app.post('/userBrackets',controller.userBrackets.post)
+app.post('/login',controller.login.post)
 app.get('/*',(req,res)=>res.redirect('/'))
 
 if (!module.parent) {

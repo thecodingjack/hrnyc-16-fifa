@@ -12,31 +12,47 @@ export default class Login extends React.Component{
     this.state = {};
   }
 
+  handleEmailInput(e){
+    this.setState({'email':e.target.value})
+  }
+
+  handlePasswordInput(e){
+    this.setState({'password':e.target.value})
+  }
+
   render(){
     return(
-      <form className='col-md-12'>
-        <div className='row'>
-          <FormGroup className='col-md-4' controlId="email">
-            <ControlLabel>Email</ControlLabel>
-            <FormControl 
-              id="email"
-              type="email"
-              label="Email"
-              placeholder="Enter email"/>
-          </FormGroup>
-        </div>
-        <div className='row'>
-          <FormGroup className='col-md-4'controlId="password">
-            <ControlLabel>Password</ControlLabel>
-            <FormControl 
-              id="password"
-              type="text"
-              label="Password"
-              placeholder="Enter password"/>
-          </FormGroup>
-        </div>
-        <Button>Submit</Button> 
-      </form>
+      <div>
+        <form className='col-md-12'>
+          <div className='row'>
+            <FormGroup className='col-md-4' controlId="email">
+              <ControlLabel>Email</ControlLabel>
+              <FormControl 
+                id="email"
+                type="email"
+                label="Email"
+                value={this.state.email}
+                placeholder="Enter email"
+                onChange={(e)=>this.handleEmailInput(e)}/>
+            </FormGroup>
+          </div>
+          <div className='row'>
+            <FormGroup className='col-md-4'controlId="password">
+              <ControlLabel>Password</ControlLabel>
+              <FormControl 
+                id="password"
+                type="password"
+                label="Password"
+                value={this.state.password}
+                placeholder="Enter password"
+                onChange={(e)=>this.handlePasswordInput(e)}/>
+            </FormGroup>
+          </div>
+          <Button onClick={()=>{
+            this.props.onLogin(this.state.email,this.state.password,this.props.mHistory)}
+            }>Submit</Button> 
+        </form>
+      </div>
     )
   }
 }

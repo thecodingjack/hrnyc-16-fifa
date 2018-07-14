@@ -76,6 +76,17 @@ module.exports ={
         })
       })
     }
+  },
+  login:{
+    post: function(req,res){
+      let body=''
+      req.on('data',(chunk)=>body+=chunk).on('end',()=>{
+        MyApp.users.loginUser(JSON.parse(body),(err,results)=>{
+          if (err) res.send(err)
+          else res.send(results)
+        })
+      })
+    }
   }
 }
 

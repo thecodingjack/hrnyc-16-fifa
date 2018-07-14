@@ -41,7 +41,7 @@ export default class SignUp extends React.Component{
               <ControlLabel>Password</ControlLabel>
               <FormControl 
                 id="password"
-                type="text"
+                type="password"
                 label="Password"
                 value={this.state.password}
                 placeholder="Enter password"

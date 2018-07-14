@@ -38,6 +38,14 @@ module.exports={
         if(err) cb(err)
         else cb(null,results)
       })
+    },
+    loginUser: (user,cb)=>{
+      var queryStr = `select * from users where users.username="${user.username}" AND users.password="{user.password}"`
+      var params = [user.username,user.password]
+      dbConnection.query(queryStr,params,(err,results)=>{
+        if(err) cb(err)
+        else cb(null,results)
+      })
     }
   },
   userPools:{
