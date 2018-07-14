@@ -18,7 +18,7 @@ export default class Pool extends React.Component{
   }
   
   hasUserStarted(poolName,username){
-    fetch(`http://127.0.0.1:3000/userPools/?poolName=${poolName}&username=${username}`,{
+    fetch(`/userPools/?poolName=${poolName}&username=${username}`,{
       method: 'GET',
     })
     .then(response => response.json())
