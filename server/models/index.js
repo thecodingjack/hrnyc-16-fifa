@@ -3,14 +3,12 @@ var dbConnection = require('../db/index.js')
 module.exports={
   fifa:{
     renderStandings: ({poolName},cb)=>{
-      console.log("FIFA", poolName)
       var queryStr = `SELECT u.*, sum(b.score) as score
       FROM users u
         INNER JOIN userBrackets b ON u.username = b.username
       WHERE b.poolName = "${poolName}"
       GROUP BY u.username`
       dbConnection.query(queryStr,(err,results)=>{
-        console.log(results)
         if(err) cb(err);
         else cb(null,results);
       })
@@ -44,7 +42,7 @@ module.exports={
   },
   userPools:{
     joinPool: ({username,poolName},cb)=>{
-      var queryStr = `insert into userPools 
+      var queryStr = `insert into userPools (username,poolName)
         select * from (select "${username}","${poolName}") as tmp
         where not exists (select username,poolName from userPools
         where username= "${username}" AND poolName="${poolName}"
@@ -54,11 +52,41 @@ module.exports={
         else cb(null,results)
       })
     },
-    showPool: ({poolName},cb)=>{
-      var queryStr = `select up.username from userPools up where up.poolName = "${poolName}"`
+    userPoolData: ({poolName,username},cb)=>{
+      var queryStr = `select up.username, up.isPlaying from userPools up where up.poolName = "${poolName}" AND up.username = "${username}"`
+      dbConnection.query(queryStr,(err,results)=>{
+        if(err) cb(err)
+        else cb(null,results[0])
+      })
+    },
+    userPoolList: ({username},cb)=>{
+      var queryStr = `select up.poolName from userPools up where up.username = "${username}"`
       dbConnection.query(queryStr,(err,results)=>{
         if(err) cb(err)
         else cb(null,results)
+      })
+    }
+  },
+  userBrackets:{
+    submitBracket: (poolName,username,brackets,cb)=>{
+      let allPromise = []
+      for(let key in brackets){
+        if(key === "isPlaying") continue;
+        let bracket = brackets[key]
+        let queryStr = `insert into userBrackets values (?,?,default,?,?,?,?,?,?,default)`
+        params = [poolName,username,bracket[0],bracket[1],bracket[2],bracket[3],bracket[4],bracket[5]]
+        dbConnection.query(queryStr,params,(err,results)=>{
+          let newPromise = new Promise(function(resolve,reject){
+            if(err) reject(err)
+            else resolve(results)
+          })
+          allPromise.push(newPromise)
+        })
+      }
+      Promise.all(allPromise).then(value=>{
+        let queryStr = `update userPools set isPlaying=1 where userPools.poolName="${poolName}" AND userPools.username="${username}"` 
+        dbConnection.query(queryStr)
+        cb(value);
       })
     }
   },
