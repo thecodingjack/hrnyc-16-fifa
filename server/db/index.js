@@ -19,6 +19,7 @@ function handleDisconnect(){
       }
     }
     console.log("DB connected " + dbConnection.threadId)
+    module.exports = dbConnection
   })
 
   return dbConnection;
