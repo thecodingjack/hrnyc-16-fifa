@@ -12,18 +12,18 @@ function handleDisconnect(){
   dbConnection.connect((err)=>{
     if(err){
       console.log('db error', err);
-      // if(err.code === 'PROTOCOL_CONNECTION_LOST') { 
+      if(err.code === 'PROTOCOL_CONNECTION_LOST') { 
         handleDisconnect();                         
-      // } else {                                      
-      //   throw err;                               
-      // }
+      } else {                                      
+        throw err;                               
+      }
     }
     console.log("DB connected " + dbConnection.threadId)
-    module.exports = dbConnection;
   })
+
   return dbConnection;
 }
 
-// let connection = handleDisconnect();
+let connection = handleDisconnect();
 
-module.exports = handleDisconnect();
+module.exports = connection;
