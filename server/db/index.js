@@ -24,6 +24,4 @@ function handleDisconnect(){
   return dbConnection;
 }
 
-let connection = handleDisconnect();
-
-module.exports = connection;
+module.exports = handleDisconnect();
