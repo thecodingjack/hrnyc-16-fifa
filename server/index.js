@@ -32,8 +32,7 @@ app.post('/login',controller.login.post)
 app.get('/*',(req,res)=>res.redirect('/'))
 
 if (!module.parent) {
-  app.listen(app.get('port'));
-  console.log('Listening on', app.get('port'));
+  app.listen(app.get('port'),'0.0.0.0',()=> console.log('Listening on', app.get('port')))
 }
 
 module.exports.app = app;
