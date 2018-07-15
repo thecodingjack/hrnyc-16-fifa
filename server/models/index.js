@@ -90,8 +90,6 @@ module.exports={
   userBrackets:{
     submitBracket: (poolName,username,brackets,cb)=>{
       let allPromise = []
-      let {isPlaying,...rest} = brackets;
-      console.log({rest})
       for(let key in brackets){
         if(key === "isPlaying") continue;
         let bracket = brackets[key]
