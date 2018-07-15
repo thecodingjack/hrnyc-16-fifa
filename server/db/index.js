@@ -6,13 +6,24 @@ const dbURL = process.env.CLEARDB_DATABASE_URL || {
   database: 'fifa'
 }
 
-var dbConnection = mysql.createConnection(dbURL)
+function handleDisconnect(){
+  let dbConnection = mysql.createConnection(dbURL)
 
-dbConnection.connect((err)=>{
-  if(err){
-    console.error(err.stack)
-  }
-  console.log("DB connected " + dbConnection.threadId)
-})
+  dbConnection.connect((err)=>{
+    if(err){
+      console.log('db error', err);
+      if(err.code === 'PROTOCOL_CONNECTION_LOST') { 
+        handleDisconnect();                         
+      } else {                                      
+        throw err;                               
+      }
+    }
+    console.log("DB connected " + dbConnection.threadId)
+  })
 
-module.exports = dbConnection;
+  return dbConnection;
+}
+
+let connection = handleDisconnect();
+
+module.exports = connection;
