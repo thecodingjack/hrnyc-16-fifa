@@ -11,8 +11,10 @@ body {
     ),
     url(http://yourtubetheme.com/wp-content/uploads/2014/09/Fifa-15-YouTube-Channel-Art-980x551.jpg);
   background-size: cover;
+  background-attachment: fixed;
   font-family: 'Source Sans Pro', sans-serif;
   color: white;
+  padding-top: 70px;
 }
 
 .black{

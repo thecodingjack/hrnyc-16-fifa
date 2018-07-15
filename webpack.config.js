@@ -27,6 +27,10 @@ module.exports = {
         test:/\.css$/,
         include: SRC_DIR,
         loader: ['style-loader','css-loader']
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i, 
+        loader: "file-loader?name=/public/icons/[name].[ext]"
       }
     ]
   },

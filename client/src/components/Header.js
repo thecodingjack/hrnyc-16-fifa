@@ -7,7 +7,7 @@ import {
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
 
 export const Header = ()=>(
-  <Navbar style={{background:"#800000",borderRadius:0, borderWidth:"0px", fontSize:"125%"}}>
+  <Navbar fixedTop style={{background:"#800000",borderRadius:0, borderWidth:"0px", fontSize:"125%"}}>
     <Navbar.Header>
       <Navbar.Brand>
         <Link style={{color:"white"}} to="/">FIFA Pool</Link>
@@ -20,13 +20,6 @@ export const Header = ()=>(
       <NavItem eventKey={2}>
         <Link style={{color:"white"}} to="/pools">Join an existing pool</Link>
       </NavItem>
-      {/* <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-        <MenuItem eventKey={3.1}>Action</MenuItem>
-        <MenuItem eventKey={3.2}>Another action</MenuItem>
-        <MenuItem eventKey={3.3}>Something else here</MenuItem>
-        <MenuItem divider />
-        <MenuItem eventKey={3.4}>Separated link</MenuItem>
-      </NavDropdown> */}
     </Nav>
     <Nav pullRight>
       <NavItem eventKey={1}>

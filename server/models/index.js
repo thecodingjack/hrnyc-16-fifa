@@ -1,5 +1,15 @@
 var dbConnection = require('../db/index.js')
 
+const matchStandings=[
+  [1,1,2],
+  [2,3,4],
+  [3,5,6],
+  [4,7,8],
+  [5],
+  [6],
+  [7]
+]
+
 module.exports={
   fifa:{
     renderStandings: ({poolName},cb)=>{
@@ -80,6 +90,8 @@ module.exports={
   userBrackets:{
     submitBracket: (poolName,username,brackets,cb)=>{
       let allPromise = []
+      let {isPlaying,...rest} = brackets;
+      console.log({rest})
       for(let key in brackets){
         if(key === "isPlaying") continue;
         let bracket = brackets[key]
@@ -99,27 +111,5 @@ module.exports={
         cb(value);
       })
     }
-  },
-  todos: {
-    create: (message,cb)=>{
-      var queryStr = 'insert into todos (message) value (?)'
-      dbConnection.query(queryStr,message,(err,results)=>{
-        if(err){
-          cb(err)
-        }else{
-          cb(null, results)
-        }
-      })
-    },
-    readAll: (cb)=>{
-      var queryStr = 'select * from todos'
-      dbConnection.query(queryStr,(err,results)=>{
-        if(err){
-          cb(err)
-        }else{
-          cb(null,results)
-        }
-      })
-    },
   }
 }

@@ -49,19 +49,16 @@ export const Bracket = ()=>(
       <ul className="round round-3">
         <li className="spacer">&nbsp;</li>
         
-        <li className="game game-top">France <span></span></li>
+        <li className="game game-top">France <span>4</span></li>
         <li className="game game-spacer">&nbsp;</li>
-        <li className="game game-bottom ">Croatia <span></span></li>
+        <li className="game game-bottom ">Croatia <span>2</span></li>
 
         <li className="spacer">&nbsp;</li>
 
       </ul>
       <ul className="round round-4">
         <li className="spacer">&nbsp;</li>
-        
-        <li className="game game-top winner"></li>
-
-        
+        <li className="game game-top winner">France</li>
         <li className="spacer">&nbsp;</li>
       </ul>		
     </main>

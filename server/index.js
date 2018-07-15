@@ -1,7 +1,6 @@
 var express = require('express');
 var morgan = require('morgan');
 var parser = require('body-parser');
-// var partials = require('express-partials');
 var cors = require('cors');
 // var router = require('./routes.js');
 var controller = require('./controllers')
@@ -12,8 +11,6 @@ var app = express();
 
 app.set('port', port);
 
-// Logging and parsing
-// app.use(partials());
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 app.use(cors())
@@ -40,11 +37,3 @@ if (!module.parent) {
 }
 
 module.exports.app = app;
-
-// var http = require('http')
-// var handleRequest = require('./controller/index.js')
-
-// var server = http.createServer(handleRequest)
-// server.listen(3000,'127.0.0.1',()=>{
-//   console.log('Listening at port 3000');
-// })
