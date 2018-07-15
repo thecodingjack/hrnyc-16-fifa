@@ -185,7 +185,9 @@ export default class Pool extends React.Component{
             <option value="8">England</option>
           </select>
           <button style={{float:'right',marginRight:"16px", color:"black"}} onClick={()=>{
-            this.props.handleSubmitBracket(this.state)
+            let bracket = Object.assign({},this.state);
+            delete bracket.isPlaying
+            this.props.handleSubmitBracket(bracket)
             this.setState({"isPlaying":1})
           }}>Done!</button>
         </li>
