@@ -12,19 +12,19 @@ const matchStandings=[
 
 function calculateScore(brackets){
   brackets = Object.keys(brackets).map(k=>brackets[k]);
-  console.log(brackets)
   matchStandings.forEach((match,idx)=>{
     let currentBracket = brackets[idx]
     let score = 0;
-    if(match[1] == currentBracket[1] && match[3] == currentBracket[3]) score += 0.5
-    if(match[2] == currentBracket[2] && match[4] == currentBracket[4]) score += 0.5
-    if(match[5] == brackets[idx][5]){
+    if(match[1] === currentBracket[1] && match[3] === currentBracket[3]) score += 0.5
+    if(match[2] === currentBracket[2] && match[4] === currentBracket[4]) score += 0.5
+    if(match[5] === brackets[idx][5]){
       if(match[0]<=4) score += 1
       else if (match[0]<=6) score += 2
       else score +=4
     }
     currentBracket.push(score)
   })
+  console.log(brackets)
   return brackets
 }
 
@@ -90,8 +90,6 @@ module.exports={
         var params = [user.username,user.password]
         connection.query(queryStr,params,(err,results)=>{
           connection.release();
-          console.log("LOGIN ",results)
-          console.log("ERR ",err)
           if(err) cb(err)
           else cb(null,results)
         })
@@ -157,8 +155,10 @@ module.exports={
         }
         Promise.all(allPromise).then(value=>{
           let queryStr = `update userPools set isPlaying=1 where userPools.poolName="${poolName}" AND userPools.username="${username}"` 
-          connection.query(queryStr,()=>connection.release())
-          cb(value);
+          connection.query(queryStr,()=>{
+            connection.release()
+            cb(value);
+          })
         })
       }))
     }

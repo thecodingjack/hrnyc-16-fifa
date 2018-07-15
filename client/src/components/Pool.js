@@ -21,7 +21,9 @@ export default class Pool extends React.Component{
     fetch(`/userPools/?poolName=${poolName}&username=${username}`,{
       method: 'GET',
     })
-    .then(response => response.json())
+    .then(response => {
+      return response.json()
+    })
     .then(({isPlaying}) => {
       this.setState({isPlaying})
     })
@@ -29,7 +31,7 @@ export default class Pool extends React.Component{
 
   handleScoreInput(matchID,teamAB,goal){
     let newState = [...this.state[matchID]];
-      if(teamAB){
+      if(!teamAB){
         newState[3] = + goal
       }else{
         newState[4] = + goal
@@ -49,7 +51,7 @@ export default class Pool extends React.Component{
     }else{
       let nextMatch = [...this.state[nextMatchID]];
       newState[5] = + winnerID;
-      if(AB){
+      if(!AB){
         nextMatch[1] = + winnerID;
       }else{
         nextMatch[2] = + winnerID;
@@ -64,6 +66,12 @@ export default class Pool extends React.Component{
   componentDidMount(){
     this.hasUserStarted(this.props.poolName,this.props.username)
   }
+
+  // componentDidUpdate(prevState){
+  //   if(this.state.isPlaying !== prevState.isPlaying){
+  //     this.props
+  //   }
+  // }
 
   render(){
     return(

@@ -18,7 +18,7 @@ export const Header = ()=>(
         <Link style={{color:"white"}} to="/create">Create a pool</Link>
       </NavItem>
       <NavItem eventKey={2}>
-        <Link style={{color:"white"}} to="/pools">Join an existing pool</Link>
+        <Link style={{color:"white"}} to="/join">Join an existing pool</Link>
       </NavItem>
     </Nav>
     <Nav pullRight>

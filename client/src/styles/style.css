@@ -9,7 +9,7 @@ body {
       rgba(0, 0, 0, 0.5),
       rgba(0, 0, 0, 0.5)
     ),
-    url(http://yourtubetheme.com/wp-content/uploads/2014/09/Fifa-15-YouTube-Channel-Art-980x551.jpg);
+    url('../public/icons/background.jpg');
   background-size: cover;
   background-attachment: fixed;
   font-family: 'Source Sans Pro', sans-serif;

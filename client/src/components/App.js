@@ -55,7 +55,6 @@ export default class App extends React.Component{
       if(!data.length) {
         alert("invalid Email/Password")
       }else{
-        console.log({data})
         this.setState({username})
         history.goBack()
       }
@@ -70,19 +69,19 @@ export default class App extends React.Component{
     .then(response => response.json())
     .then(data => {
       this.getPools(pools=>this.setState({pools}))
-      alert("Pool added!")
+      alert(`Pool ${poolName} added!`)
     })
   }
 
   handleJoinPool(username,poolName){
     this.setState({poolName})
+    this.getUserPools((userPools)=>this.setState({userPools}))
     fetch("/userPools",{
       method: 'POST',
       body: JSON.stringify({username,poolName})
     })
     .then(response => response.json())
     .then(data => {
-      console.log("JOINPOOL", data)
       this.getStandings(poolName,(standings)=>{
         this.setState({standings})
       })
@@ -91,14 +90,15 @@ export default class App extends React.Component{
 
   handleSubmitBracket(bracket){
     let mBody = {"poolName":this.state.poolName,"username":this.state.username,bracket}
-    console.log("MBODY",mBody)
     fetch("/userBrackets",{
       method: 'POST',
       body: JSON.stringify(mBody)
     })
     .then(response => response.json())
     .then(data => {
-      console.log("SUBMITBRACKET", data)
+      this.getStandings(this.state.poolName,(standings)=>{
+        this.setState({standings})
+      })
     })
   }
 
@@ -119,17 +119,24 @@ export default class App extends React.Component{
   }
 
   getStandings(poolName,cb){
-    console.log({poolName})
     fetch(`/fifa/?poolName=${poolName}`,{
       method: 'GET'
     })
     .then(response => response.json())
-    .then(standings => cb(standings))
+    .then(standings => {
+      cb(standings)
+    })
   }
 
   componentDidMount(){
     this.getPools((pools)=>this.setState({pools}))
     this.getUserPools((userPools)=>this.setState({userPools}))
+  }
+
+  componentDidUpdate(prevProps){
+    if(this.props.username!==prevProps.username){
+      this.getUserPools((userPools)=>this.setState({userPools}))
+    }
   }
 
   render(){
@@ -148,7 +155,7 @@ export default class App extends React.Component{
           <Route path="/create" render={()=>(
             <AddPool handleAdd={this.handleAdd}/>
           )}/>
-          <Route path="/pools" render={()=>(
+          <Route path="/join" render={()=>(
             <PoolList username={this.state.username} joinPool={this.handleJoinPool} pools={this.state.pools}/>
           )}/>
           <Route path="/pool" render={()=>(
