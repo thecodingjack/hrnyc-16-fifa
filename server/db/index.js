@@ -13,7 +13,7 @@ function handleDisconnect(){
     if(err){
       console.log('db error', err);
       if(err.code === 'PROTOCOL_CONNECTION_LOST') { 
-        handleDisconnect();                         
+        module.exports = handleDisconnect();                         
       } else {                                      
         throw err;                               
       }
@@ -23,5 +23,7 @@ function handleDisconnect(){
 
   return dbConnection;
 }
+
+// let connection = handleDisconnect();
 
 module.exports = handleDisconnect();
